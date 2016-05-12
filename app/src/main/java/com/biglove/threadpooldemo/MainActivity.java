@@ -35,7 +35,6 @@ public class MainActivity extends AppCompatActivity {
         for (int i = 0; i < 5; i++) {
             list.add(new TestTask(i));
         }
-
         ThreadPoolManager poolManager = ThreadPoolManager.Instance();
         poolManager.setProgressInterface(new ThreadPoolManager.ThreadProgressInterface() {
             @Override
@@ -46,6 +45,11 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onThreadEnd() {
                 System.out.println("======线程池已经终止，任务全部执行结束，可以开始做下一步操作");
+            }
+
+            @Override
+            public void onThreadProgress(int progress) {
+
             }
         });
         poolManager.addThreadToPool(list);
